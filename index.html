@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Safe Pathways for All</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth; /* smooth scrolling */
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      overflow-x: hidden;
+    }
+
+    /* FLOATING BACKGROUND ELEMENTS */
+    .bg-circle {
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    .circle1 {
+      width: 300px;
+      height: 300px;
+      background: #2c3e50;
+      top: 10%;
+      left: -100px;
+    }
+
+    .circle2 {
+      width: 200px;
+      height: 200px;
+      background: #34495e;
+      bottom: 15%;
+      right: -80px;
+    }
+
+    /* FULLSCREEN SECTIONS */
+    .fullscreen {
+      height: 100vh;
+      padding: 80px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .content {
+      max-width: 900px;
+      background: rgba(255,255,255,0.9);
+      padding: 60px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .content.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================================
+       TITLE PAGE
+       ================================ */
+    #title {
+      position: relative;
+      background: linear-gradient(120deg, #1f2d3a, #2c3e50, #3a4f66);
+      background-size: 300% 300%;
+      animation: gradientMove 10s ease infinite;
+      color: white;
+      overflow: hidden;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #title .content {
+      background: none;
+      box-shadow: none;
+      position: relative;
+      animation: float 6s ease-in-out infinite; /* floating animation */
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    #title .content::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+
+    #title h1 {
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      text-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    #title p {
+      font-size: 26px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    /* TITLE PAGE BUTTON FIXED */
+    #title .start-btn {
+      position: relative;
+      z-index: 2;
+      padding: 15px 45px;
+      font-size: 20px;
+      border-radius: 50px;
+      background: white;
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    #title .start-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    /* TITLES */
+    h2 {
+      font-size: 48px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    p, li {
+      font-size: 22px;
+    }
+
+    ul {
+      list-style-position: inside;
+    }
+
+    .divider {
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, #2c3e50, #7f8c8d);
+      margin: 20px auto 40px;
+      border-radius: 5px;
+    }
+
+    /* MENU */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 260px);
+      gap: 30px;
+      margin-top: 30px;
+      justify-content: center;
+    }
+
+    .menu-grid a {
+      background: #2c3e50;
+      color: white;
+      padding: 35px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .menu-grid a:hover {
+      transform: scale(1.05);
+      background: #1a252f;
+    }
+
+    /* NAV BUTTONS */
+    .nav-buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons a {
+      padding: 12px 25px;
+      border-radius: 30px;
+      background: #2c3e50;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .nav-buttons a:hover {
+      background: #1a252f;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+<!-- BACKGROUND ELEMENTS -->
+<div class="bg-circle circle1"></div>
+<div class="bg-circle circle2"></div>
+
+<!-- TITLE -->
+<section id="title" class="fullscreen">
+  <div class="content show">
+    <h1>Safe Pathways for All</h1>
+    <p>Improving Walkability & Infrastructure Safety</p>
+    <p><strong>Leand Majin Sahop | Civil Engineering</strong></p>
+    <a href="#menu" class="start-btn">Click to Proceed</a>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="fullscreen">
+  <div class="content">
+    <h2>Presentation Menu</h2>
+    <div class="divider"></div>
+
+    <div class="menu-grid">
+      <a href="#what">What is it?</a>
+      <a href="#problem">The Problem</a>
+      <a href="#solution">The Solution</a>
+      <a href="#why">Why This Matters</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section id="what" class="fullscreen">
+  <div class="content">
+    <h2>What Is This Advocacy?</h2>
+    <div class="divider"></div>
+    <p>
+      This advocacy promotes safer walkways by addressing damaged sidewalks
+      and road surfaces that affect pedestrians and commuters.
+    </p>
+
+    <div class="nav-buttons">
+      <a href="#menu">Menu</a>
+      <a href="#problem">Next ➜</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="fullscreen">
+  <div class="content">
+    <h2>The Problem</h2>
+    <div class="divider"></div>
+
+    <ul>
+      <li>Uneven walkways cause accidents</li>
+      <li>Potholes damage vehicles</li>
+      <li>Flooding worsens road conditions</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <a href="#what">⬅ What</a>
+      <a href="#menu">Menu</a>
+      <a href="#solution">Solution ➜</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="fullscreen">
+  <div class="content">
+    <h2>The Solution</h2>
+    <div class="divider"></div>
+
+    <ul>
+      <li>Community-based reporting</li>
+      <li>Basic road inspections</li>
+      <li>Low-cost maintenance programs</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <a href="#problem">⬅ Problem</a>
+      <a href="#menu">Menu</a>
+      <a href="#why">Why It Matters ➜</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="fullscreen">
+  <div class="content">
+    <h2>Why This Matters</h2>
+    <div class="divider"></div>
+
+    <ul>
+      <li>Prevents injuries</li>
+      <li>Supports sustainable infrastructure</li>
+      <li>Encourages civic responsibility</li>
+    </ul>
+
+    <div class="nav-buttons">
+      <a href="#solution">⬅ Solution</a>
+      <a href="#menu">Menu</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const contents = document.querySelectorAll('.content');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  contents.forEach(content => observer.observe(content));
+</script>
+
+</body>
+</html>
